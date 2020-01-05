@@ -11,19 +11,19 @@ export class CharacterService {
   constructor(private http : HttpClient) { }
 
   findAllCharacters(){
-    return this.http.get(AppSettings.APP_URL + "/characters/");
+    return this.http.get<Character>(AppSettings.APP_URL + "/characters/");
   }
 
   findCharacterById(idCharacter : number){
-    return this.http.get(AppSettings.APP_URL + "/characters/" + idCharacter);
+    return this.http.get<Character>(AppSettings.APP_URL + "/characters/" + idCharacter);
   }
 
   saveCharacter ( character : Character) {
-    return this.http.post(AppSettings.APP_URL + "/characters/", character);
+    return this.http.post<Character>(AppSettings.APP_URL + "/characters/", character);
   }
 
   sharCharacter(idCharacter : number, isShared : boolean){
-    return this.http.get(AppSettings.APP_URL + "/characters/share/" + idCharacter + "/" + isShared );
+    return this.http.get<Character>(AppSettings.APP_URL + "/characters/share/" + idCharacter + "/" + isShared );
   }
 
 }

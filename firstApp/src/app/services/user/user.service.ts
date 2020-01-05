@@ -11,22 +11,19 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
     findAllUsers(){
-      return this.http.get(AppSettings.APP_URL + "/users/");
+      return this.http.get<User>(AppSettings.APP_URL + "/users/");
     }
 
     findUserById(idUser: number) {
-      return this.http.get(AppSettings.APP_URL + "/users/" + idUser);
+      return this.http.get<User>(AppSettings.APP_URL + "/users/" + idUser);
     }
 
     saveUser(user : User){
-      return this.http.post(AppSettings.APP_URL + "/users/" , user);
+      return this.http.post<User>(AppSettings.APP_URL + "/users/" , user);
     }
 
     login(mail : string,password: string){
-      let param : HttpParams = new HttpParams();
-      param.append("mail",mail);
-      param.append("password",password);
-      return this.http.post(AppSettings.APP_URL + "/users/login" , param);
+      return this.http.post<User>(AppSettings.APP_URL + "/users/login?mail=" + mail + "&password=" + password, null);
     }
 
 }
